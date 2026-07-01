@@ -7,36 +7,6 @@ The project uses MobileNetV2 Transfer Learning to classify faces into:
 
 ---
 
-## 🚀 Features
-
-### Core Features
-* ⚡ **FastAPI backend** for high-performance inference
-* 🧠 **MobileNetV2** deep learning model
-* 🎨 **Futuristic Streamlit** frontend web interface
-* 📷 **Webcam support** for real-time predictions
-* 🧍 **Automatic face detection & cropping** using OpenCV
-* 🐳 **Dockerized deployment** support
-* 🧪 **Automated API tests** included
-* ☁️ **Ready for cloud deployment**
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Usage |
-| :--- | :--- |
-| **Python** | Main programming language |
-| **PyTorch** | Deep learning framework |
-| **FastAPI** | Backend REST API |
-| **Streamlit** | Frontend web interface |
-| **OpenCV** | Face detection & cropping |
-| **MobileNetV2** | Transfer learning model |
-| **Docker** | Containerization |
-| **NumPy** | Numerical processing |
-| **Pillow** | Image handling |
-
----
-
 ## 📂 Project Structure
 
 ```text
@@ -51,7 +21,7 @@ The project uses MobileNetV2 Transfer Learning to classify faces into:
 ├── test_api.py                 # Automated API testing
 ├── Advanced_ML_Project.ipynb   # Training notebook
 └── README.md
-🧠 Model ArchitectureThis project utilizes the MobileNetV2 lightweight CNN architecture, which is highly optimized for:Fast inference speedLow latency on edge devicesReal-time computer vision tasksFlawless 100% classification accuracy on balanced validation data🖼️ Image Processing PipelineThe uploaded image passes through several structural preprocessing steps before prediction:Face Detection using OpenCV Haar CascadeFace Cropping around the detected regionCLAHE Enhancement for brightness and contrast normalizationResize to $224 \times 224$ pixelsTensor Conversion & NormalizationInference Prediction using MobileNetV2📦 Installation & Setup1. Clone the RepositoryBashgit clone [https://github.com/YOUR_USERNAME/face-mask-detection.git](https://github.com/YOUR_USERNAME/face-mask-detection.git)
+🧠 Model ArchitectureThis project utilizes the MobileNetV2 lightweight CNN architecture, which is highly optimized for:Fast inference speedLow latency on edge devicesReal-time computer vision tasksFlawless 100% classification accuracy on balanced validation data  🖼️ Image Processing PipelineThe uploaded image passes through several structural preprocessing steps before prediction:Face Detection using OpenCV Haar CascadeFace Cropping around the detected regionCLAHE Enhancement for brightness and contrast normalizationResize to $224 \times 224$ pixelsTensor Conversion & NormalizationInference Prediction using MobileNetV2📦 Installation & Setup1. Clone the RepositoryBashgit clone [https://github.com/YOUR_USERNAME/face-mask-detection.git](https://github.com/YOUR_USERNAME/face-mask-detection.git)
 cd face-mask-detection
 2. Create a Virtual EnvironmentWindows:Bashpython -m venv venv
 venv\Scripts\activate
