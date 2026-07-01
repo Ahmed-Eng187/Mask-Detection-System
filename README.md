@@ -1,119 +1,84 @@
-Markdown
-# 😷 Face Mask Detection API (v2.0)
+Markdown# Face Mask Detection API 😷
 
-A production-ready Deep Learning Face Mask Detection system built using **PyTorch**, **FastAPI**, and **Streamlit**. The project leverages **MobileNetV2 Transfer Learning** to classify faces into **WithMask** (✅ Allowed Entry) or **WithoutMask** (❌ Access Denied), featuring fully containerized services and an optimized image processing pipeline.
-
----
-
-## 🚀 Key Features
-
-* **Dual-Core Architecture:** High-performance REST API backend powered by **FastAPI** coupled with a modern cyberpunk UI frontend powered by **Streamlit**.
-* **Advanced Computer Vision:** Automatic face detection, multi-face localization, and precision cropping using **OpenCV** before running neural inference.
-* **Lightweight Deep Learning:** Powered by a customized **MobileNetV2** architecture optimized for edge devices, ultra-low latency, and real-time computer vision tasks.
-* **Production-Ready MLOps:** Fully dockerized deployment infrastructure supporting simultaneous multi-port routing (`8000` & `8501`).
-* **Automated QA Testing Suite:** Includes comprehensive test scenarios (invalid files, empty requests, file compatibility, and performance benchmarking).
-* **Real-Time Predictions:** Support for both secure image file uploads and real-time live webcam capture pipelines.
+A production-ready Deep Learning Face Mask Detection system built using PyTorch, FastAPI, and Streamlit.
+The project uses MobileNetV2 Transfer Learning to classify faces into:
+* ✅ **WithMask**
+* ❌ **WithoutMask**
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## 🚀 Features
 
-* **Deep Learning Framework:** PyTorch, Torchvision
-* **API Development:** FastAPI, Uvicorn, Python-Multipart, Requests
-* **Dashboard & Web UI:** Streamlit, Pillow, NumPy
-* **Computer Vision Processing:** OpenCV (`opencv-python-headless`)
-* **Infrastructure Layer:** Docker, Containerization Utilities
-
----
-
-## 🖼️ Image Processing Pipeline
-
-To guarantee maximum inference precision, every uploaded frame passes through the following lifecycle:
-1. **Face Detection:** OpenCV Haar Cascade algorithm localizes the facial region.
-2. **Auto-Cropping:** Isolates the detected face bounding box to eliminate background noise.
-3. **CLAHE Enhancement:** Contrast Limited Adaptive Histogram Equalization normalizes illumination inconsistencies.
-4. **Tensor Conversion:** Resizes to $224 \times 224$ pixels, converts to PyTorch floating tensors, and applies standard normalization matrices.
-5. **Inference Execution:** Forward pass runs under `torch.no_grad()` optimization block using MobileNetV2.
+### Core Features
+* ⚡ **FastAPI backend** for high-performance inference
+* 🧠 **MobileNetV2** deep learning model
+* 🎨 **Futuristic Streamlit** frontend web interface
+* 📷 **Webcam support** for real-time predictions
+* 🧍 **Automatic face detection & cropping** using OpenCV
+* 🐳 **Dockerized deployment** support
+* 🧪 **Automated API tests** included
+* ☁️ **Ready for cloud deployment**
 
 ---
 
-## 📊 API Endpoints Specification
+## 🛠️ Tech Stack
 
-### 🟢 `GET /`
-Returns the global API deployment status.
-```json
-{
+| Technology | Usage |
+| :--- | :--- |
+| **Python** | Main programming language |
+| **PyTorch** | Deep learning framework |
+| **FastAPI** | Backend REST API |
+| **Streamlit** | Frontend web interface |
+| **OpenCV** | Face detection & cropping |
+| **MobileNetV2** | Transfer learning model |
+| **Docker** | Containerization |
+| **NumPy** | Numerical processing |
+| **Pillow** | Image handling |
+
+---
+
+## 📂 Project Structure
+
+```text
+.
+├── app.py                      # FastAPI backend
+├── streamlit_app.py            # Streamlit frontend
+├── mask_detector.pth           # Trained model weights
+├── requirements.txt            # Python dependencies
+├── Dockerfile                  # Docker configuration
+├── start.sh                    # Linux/Mac startup script
+├── run.bat                     # Windows startup script
+├── test_api.py                 # Automated API testing
+├── Advanced_ML_Project.ipynb   # Training notebook
+└── README.md
+🧠 Model ArchitectureThis project utilizes the MobileNetV2 lightweight CNN architecture, which is highly optimized for:Fast inference speedLow latency on edge devicesReal-time computer vision tasksFlawless 100% classification accuracy on balanced validation data🖼️ Image Processing PipelineThe uploaded image passes through several structural preprocessing steps before prediction:Face Detection using OpenCV Haar CascadeFace Cropping around the detected regionCLAHE Enhancement for brightness and contrast normalizationResize to $224 \times 224$ pixelsTensor Conversion & NormalizationInference Prediction using MobileNetV2📦 Installation & Setup1. Clone the RepositoryBashgit clone [https://github.com/YOUR_USERNAME/face-mask-detection.git](https://github.com/YOUR_USERNAME/face-mask-detection.git)
+cd face-mask-detection
+2. Create a Virtual EnvironmentWindows:Bashpython -m venv venv
+venv\Scripts\activate
+Linux / Mac:Bashpython3 -m venv venv
+source venv/bin/activate
+3. Install DependenciesBashpip install -r requirements.txt
+▶️ Running the ProjectRun FastAPI BackendBashpython app.py
+Server URL: http://localhost:8000Interactive Swagger Docs: http://localhost:8000/docsRun Streamlit FrontendOpen another terminal tab, activate your virtual environment, and run:Bashstreamlit run streamlit_app.py
+Frontend URL: http://localhost:8501🐳 Docker Deployment1. Build Docker ImageBashdocker build -t mask-ai .
+2. Run ContainerBashdocker run -p 8000:8000 -p 8501:8501 mask-ai
+📡 API EndpointsGET /Returns the API status.Response Example:JSON{
   "message": "Face Mask Detection API is running",
   "docs": "/docs"
 }
-🔵 GET /health
-Returns infrastructure health metrics and active computing device (cpu / cuda).
-
-JSON
-{
+GET /healthReturns server health and computing device information.Response Example:JSON{
   "status": "ok",
   "device": "cpu"
 }
-🔴 POST /predict
-Accepts a multipart image stream (file=image.jpg) and returns probability classifications.
-
-JSON
-{
+POST /predictUpload an image file for real-time mask detection.Request: Multipart form-data (Key: file)Response Example:JSON{
   "status": "mask_on",
   "action": "Allow entry",
   "class": "WithMask",
-  "confidence": 0.9821,
+  "confidence": 1.0,
   "probabilities": {
-    "WithMask": 0.9821,
-    "WithoutMask": 0.0179
+    "WithMask": 1.0,
+    "WithoutMask": 0.0
   }
 }
-💻 Installation & Quickstart
-Clone the Repository & Navigate:
-
-Bash
-git clone [https://github.com/Ahmed-Eng187/face-mask-detection.git](https://github.com/Ahmed-Eng187/face-mask-detection.git)
-cd face-mask-detection
-Initialize Environment & Dependencies:
-
-Bash
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-
-# Install strict package requirements
-pip install -r requirements.txt
-Launch Microservices (Local Development):
-
-Bash
-# Terminal 1: Run FastAPI Backend
-python app.py
-
-# Terminal 2: Run Streamlit Frontend Web App
-streamlit run streamlit_app.py
-Launch via Docker Containerization:
-
-Bash
-docker build -t mask-ai .
-docker run -p 8000:8000 -p 8501:8501 mask-ai
-📁 Project Structure
-Plaintext
-face-mask-detection/
-│
-├── Advanced_ML_Project.ipynb   # Deep learning training and evaluation notebook
-├── app.py                      # FastAPI microservice backend core logic
-├── streamlit_app.py            # Streamlit dashboard interface code
-├── test_api.py                 # Automated unit and performance test suite
-├── mask_detector.pth           # Evaluated and saved PyTorch model weights
-├── requirements.txt            # Python environment dependencies matrix
-├── Dockerfile                  # Application service multi-stage containerization
-└── README.md                   # Enterprise system documentation
-🏁 Conclusion
-This system successfully demonstrates the integration of Deep Learning with lightweight architectures like MobileNetV2, proving that real-time computer vision classifiers can be built with minimal compute footprints, packaged via Docker, and prepared for robust scalable cloud native frameworks.
-
-👤 Author
-Ahmed Hamdy
-
-🎯 Aspiring Machine Learning Engineer & Data Analyst
-
-🛠️ NLP | Deep Learning | Computer Vision | MLOps | Cloud Engineering
+🎨 Streamlit UI Features🌟 Futuristic cyberpunk design with neon animations📊 Real-time dynamic confidence tracking bars📷 Live webcam frame capture support🖼️ Drag-and-drop local image upload🧍 Auto face-crop toggle switch🖥️ Live container status monitoring🧪 Automated TestingRun the automated API test suite to verify endpoint stability:Bashpython test_api.py
+Tests Covered:API health validationValid image prediction flowInvalid file and empty request handlingPNG/JPG format compatibilityLarge image resolution handling & performance benchmarks📈 Performance & OptimizationsArchitectural efficiency: Utilizes MobileNetV2 for rapid inference.Image Normalization: CLAHE preprocessing for optimal lightning adjustment.Speed: Implements Torch no_grad() to bypass gradient tracking during inference.Accuracy: Pre-inference face cropping isolates crucial facial features.🔐 Future Improvements[ ] JWT Authentication for API security[ ] Multi-face detection within a single frame[ ] Continuous video stream processing[ ] GPU acceleration support[ ] Database logging & History dashboard☁️ Deployment OptionsThis containerized application can be seamlessly deployed on:Render / RailwayAWS EC2 / Azure / Google CloudHugging Face Spaces🧑‍💻 DeveloperDeveloped by: Ahmed HamdyRole: AI & Data Science Student
